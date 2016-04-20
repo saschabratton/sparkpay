@@ -1,0 +1,21 @@
+{
+  "name": "sparkpay",
+  "version": "0.0.1",
+  "description": "SparkPay REST API client for Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sparkpay",
+    "http",
+    "api",
+    "client",
+    "node"
+  ],
+  "author": "Sascha Bratton <sascha@brattonbratton.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.9.1"
+  }
+}
