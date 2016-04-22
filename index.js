@@ -1,1 +1,3 @@
-module.exports = require('./lib/sparkpay');
+'use strict'
+
+module.exports = require('./lib/sparkpay')
