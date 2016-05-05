@@ -3,15 +3,16 @@
 Node.js-based client wrapper for SparkPay REST API
 
 <table>
-<thead><tr><th>Known Issues</th><th>To Dos</th></tr></thead>
+<thead><tr><th>Known Issues</th></tr></thead>
 <tbody><tr><td>
 <ul><li>Only the <b>GET</b> method of requests works.</li>
 <li>No support for requesting nested resources directly (must use expand).</li>
 <li>No support for <b>multiple resource</b> or <b>filled</b> requests.</li></ul>
-</td><td>
-<ul><li>Add <b>collect</b> method for collecting multiple page responses.</li></ul>
 </td></tr></tbody>
-</table>
+<thead><tr><th>To Dos</th></tr></thead>
+<tbody><tr><td>
+<ul><li>Add <b>collect</b> method for collecting multiple page responses.</li></ul>
+</td></tr></tbody></table>
 
 ---
 
