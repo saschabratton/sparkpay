@@ -1,6 +1,19 @@
 # sparkpay node client
 
-Node.js-based client wrapper for SparkPay REST API.
+Node.js-based client wrapper for SparkPay REST API
+
+<table>
+<thead><tr><th>Known Issues</th><th>To Dos</th></tr></thead>
+<tbody><tr><td>
+<ul><li>Only the <b>GET</b> method of requests works.</li>
+<li>No support for requesting nested resources directly (must use expand).</li>
+<li>No support for <b>multiple resource</b> or <b>filled</b> requests.</li></ul>
+</td><td>
+<ul><li>Add <b>collect</b> method for collecting multiple page responses.</li></ul>
+</td></tr></tbody>
+</table>
+
+---
 
 ## Installation
 
@@ -13,7 +26,7 @@ npm install sparkpay --save
 Each client instance is initialized using the **init(config)** method. This allows multiple client instance for different storefronts and/or with unique API tokens for accessing different scopes of the API. The config should be an object with at least the required `domain` and `token` properties.
 
 ````js
-var sparkpay = require('../sparkpay').init({
+var sparkpay = require('sparkpay').init({
   domain: 'example.com', // Your store's URL
   token: 'abcdefghijklmnopqrstuvwxyz123456' // API access token
 });
@@ -123,15 +136,6 @@ sparkpay.get.products({
 })
 ````
 > This is the equivalent of an API request to `/api/v1/products?fields=item_name`
-
-Alternatively, you can included a list of fields in a string as comma-separated values:
-
-````js
-sparkpay.get.products({
-  fields: 'id,item_name,item_number,price,categories'
-})
-````
-> This is the equivalent of an API request to `/api/v1/products?fields=id,item_name,item_number,price,categories`
 
 For a list of available fields for the resource you are requesting, [check the official documentation](https://github.com/SparkPay/rest-api/blob/master/resource_list.md).
 
@@ -313,6 +317,26 @@ sparkpay.get.products({
 #### expand
 
 The **expand** parameter can be used to specify a list of nested resources to be added to the response.
+
+If you want to expand multiple nested resources, it should be an array:
+
+````js
+sparkpay.get.products({
+  expand: [ 'categories' ,'attributes' ]
+})
+````
+> This is the equivalent of an API request to `api/v1/products?expand=categories,attributes`
+
+If you only want a single nest resource filled, it can be a string:
+
+````js
+sparkpay.get.products({
+  expand: 'categories'
+})
+````
+> This is the equivalent of an API request to `api/v1/products?expand=categories`
+
+---
 
 #### noCache
 
