@@ -1,6 +1,3 @@
 {
-    "extends": "strict-standard",
-    "plugins": [
-        "standard"
-    ]
+    "extends": "strict-standard"
 }
