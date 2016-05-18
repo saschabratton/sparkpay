@@ -1,5 +1,7 @@
 # sparkpay node client
 
+[![npm version](https://img.shields.io/npm/v/sparkpay.svg)](https://www.npmjs.com/package/sparkpay) [![travis status](https://api.travis-ci.org/saschabratton/sparkpay.svg)](https://travis-ci.org/saschabratton/sparkpay)
+
 Node.js-based client wrapper for SparkPay REST API
 
 <table>
