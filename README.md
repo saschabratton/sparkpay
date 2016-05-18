@@ -124,7 +124,7 @@ If you want multiple fields, it should be an array:
 
 ````js
 sparkpay.get.products({
-  fields: [ 'id' ,'item_name' ,'item_number' ,'price' , 'categories' ]
+  fields: [ 'id', 'item_name', 'item_number', 'price', 'categories' ]
 })
 ````
 > This is the equivalent of an API request to `/api/v1/products?fields=id,item_name,item_number,price,categories`
