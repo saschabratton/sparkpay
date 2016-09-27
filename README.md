@@ -56,7 +56,7 @@ Requests are made by specifying the method and the resource, as well as optional
 For example, to request all the [gift certificates](https://github.com/SparkPay/rest-api/blob/master/resources/gift_certificates.md) issued in your store:
 
 ````js
-sparkpay.get.gift_certificates();
+sparkpay.gift_certificates.get();
 ````
 
 Requests are Promise-based using [mzabriskie/axios](https://github.com/mzabriskie/axios) which implements [stefanpenner/es6-promise](https://github.com/stefanpenner/es6-promise) (a subset of [rsvp.js](https://github.com/tildeio/rsvp.js)).
@@ -64,7 +64,7 @@ Requests are Promise-based using [mzabriskie/axios](https://github.com/mzabriski
 For example, to log a list of order ID's and their order dates to the console:
 
 ````js
-sparkpay.get.orders()
+sparkpay.orders.get()
   .then(function(response) {
     // log the total count of orders to console
     console.log(response.total_count);
@@ -89,7 +89,7 @@ Requests can include optional parameters based on the [common usage](https://git
 
 The **id** parameter requests a specific object from a resource rather than returning an array of matching objects.
 
-So calling `sparkpay.get.orders()` may result in a response like:
+So calling `sparkpay.orders.get()` may result in a response like:
 
 ````js
 {
@@ -105,7 +105,7 @@ So calling `sparkpay.get.orders()` may result in a response like:
 ````
 > This is the equivalent of an API request to `/api/v1/orders`
 
-Whereas calling `sparkpay.get.orders( { id: 1 } )` will result in a response like:
+Whereas calling `sparkpay.orders.get( { id: 1 } )` will result in a response like:
 
 ````js
 {
@@ -125,7 +125,7 @@ The **fields** parameter can be used to include in the response, as described un
 If you want multiple fields, it should be an array:
 
 ````js
-sparkpay.get.products({
+sparkpay.products.get({
   fields: [ 'id', 'item_name', 'item_number', 'price', 'categories' ]
 })
 ````
@@ -134,7 +134,7 @@ sparkpay.get.products({
 If you only want a single field included, it can be a string:
 
 ````js
-sparkpay.get.products({
+sparkpay.products.get({
   fields: 'item_name'
 })
 ````
@@ -151,7 +151,7 @@ The **query** parameter should be an object with property names matching the fie
 For example, to search for orders with a status ID of 2:
 
 ````js
-sparkpay.get.orders({
+sparkpay.orders.get({
   query: {
     order_status_id: 2
   }
@@ -168,7 +168,7 @@ Alternatively, you may specify [comparison operators as described in the officia
 Returns results where a field is *equal* to the supplied value.
 
 ````js
-sparkpay.get.products({
+sparkpay.products.get({
   query: {
     item_name: { op: 'eq', value: 'test' }
   }
@@ -180,7 +180,7 @@ sparkpay.get.products({
 Returns results where a field is *not equal* to the supplied value.
 
 ````js
-sparkpay.get.products({
+sparkpay.products.get({
   query: {
     item_name: { op: 'not', value: 'test' }
   }
@@ -192,7 +192,7 @@ sparkpay.get.products({
 Returns results where a field contains the supplied value.
 
 ````js
-sparkpay.get.products({
+sparkpay.products.get({
   query: {
     item_name: { op: 'like', value: 'test' }
   }
@@ -204,7 +204,7 @@ sparkpay.get.products({
 Returns results where a field is *greater than* the supplied value.
 
 ````js
-sparkpay.get.products({
+sparkpay.products.get({
   query: {
     price: { op: 'gt', value: 5.00 }
   }
@@ -216,7 +216,7 @@ sparkpay.get.products({
 Returns results where a field is *greater than or equal to* the supplied value.
 
 ````js
-sparkpay.get.products({
+sparkpay.products.get({
   query: {
     price: { op: 'gte', value: 5.00 }
   }
@@ -228,7 +228,7 @@ sparkpay.get.products({
 Returns results where a field is *less than* the supplied value.
 
 ````js
-sparkpay.get.products({
+sparkpay.products.get({
   query: {
     price: { op: 'lt', value: 25.00 }
   }
@@ -240,7 +240,7 @@ sparkpay.get.products({
 Returns results where a field is *less than or equal to* the supplied value.
 
 ````js
-sparkpay.get.products({
+sparkpay.products.get({
   query: {
     price: { op: 'lte', value: 25.00 }
   }
@@ -257,7 +257,7 @@ You may join comparison operators in a query using [conjunction operators as des
 This is the default when multiple fields are specified in a query.
 
 ````js
-sparkpay.get.products({
+sparkpay.products.get({
   query: {
     item_name: 'test',
     price: { op: 'gt', value: 5.00 }
@@ -270,7 +270,7 @@ The **AND** conjunction operator can also be used to specify multiple comparison
 
 
 ````js
-sparkpay.get.products({
+sparkpay.products.get({
   query: {
     price: {
       op: 'AND',
@@ -288,7 +288,7 @@ sparkpay.get.products({
 Can be used to override the default `AND` behavior when multiple fields are specified in a query by assigning a single query to the `value` property.
 
 ````js
-sparkpay.get.products({
+sparkpay.products.get({
   query: {
     item_name: { op: 'like', value: 'test' },
     price: {
@@ -303,7 +303,7 @@ sparkpay.get.products({
 The **OR** conjunction operator can also be used to specify multiple comparison values for a single field by assigning a `value` property which is an array of the comparison operator queries you want to join together.
 
 ````js
-sparkpay.get.products({
+sparkpay.products.get({
   item_name: {
     op: 'OR',
     value: [
@@ -324,7 +324,7 @@ The **expand** parameter can be used to specify a list of nested resources to be
 If you want to expand multiple nested resources, it should be an array:
 
 ````js
-sparkpay.get.products({
+sparkpay.products.get({
   expand: [ 'categories' ,'attributes' ]
 })
 ````
@@ -333,7 +333,7 @@ sparkpay.get.products({
 If you only want a single nest resource filled, it can be a string:
 
 ````js
-sparkpay.get.products({
+sparkpay.products.get({
   expand: 'categories'
 })
 ````
@@ -346,7 +346,7 @@ sparkpay.get.products({
 The **noCache** parameter can be used to include a `Cache-Control: no-cache` header in the request.
 
 ````js
-sparkpay.get.products({
+sparkpay.products.get({
   query: { item_name: 'test' },
   noCache: true
 })
