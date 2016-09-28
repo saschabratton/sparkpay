@@ -4,20 +4,6 @@
 
 Node.js-based client wrapper for SparkPay REST API
 
-<table>
-<thead><tr><th>Known Issues</th></tr></thead>
-<tbody><tr><td>
-<ul><li>Only the <b>GET</b> method of requests works.</li>
-<li>No support for requesting nested resources directly (must use expand).</li>
-<li>No support for <b>multiple resource</b> or <b>filled</b> requests.</li></ul>
-</td></tr></tbody>
-<thead><tr><th>To Dos</th></tr></thead>
-<tbody><tr><td>
-<ul><li>Add <b>collect</b> method for collecting multiple page responses.</li></ul>
-</td></tr></tbody></table>
-
----
-
 ## Installation
 
 ````bash
@@ -353,6 +339,16 @@ sparkpay.products.get({
 ````
 
 See [Caching](https://github.com/SparkPay/rest-api#caching) in the official documentation for details.
+
+---
+
+### Collection
+
+The `collect` method will make a recursive tail call whenever a response includes a `next_page` value.
+
+So calling `sparkpay.orders.collect()` will collect all orders in the store and  return them concatenated into a single array.
+
+Resource responses from SparkPay are limited to 100 per request. So if your store has 450 orders, it will take five requests to collect them all. **Be careful with the `collect` method; if your store has a lot of data, it could take quite some time to collect all of the responses.**
 
 ### Timeouts
 
