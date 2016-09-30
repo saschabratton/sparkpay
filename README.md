@@ -340,16 +340,16 @@ sparkpay.products.get({
 
 See [Caching](https://github.com/SparkPay/rest-api#caching) in the official documentation for details.
 
----
-
-### Collection
+## Collection
 
 The `collect` method will make a recursive tail call whenever a response includes a `next_page` value.
 
-So calling `sparkpay.orders.collect()` will collect all orders in the store and  return them concatenated into a single array.
+Calling `sparkpay.orders.collect()` will collect all orders in the store and  return them concatenated into a single array.
 
-Resource responses from SparkPay are limited to 100 per request. So if your store has 450 orders, it will take five requests to collect them all. **Be careful with the `collect` method; if your store has a lot of data, it could take quite some time to collect all of the responses.**
+Collection can also be invoked by adding `collect: true` to a `get` method's request parameters. Calling `sparkpay.orders.get({ collect: true })` is the same as calling `sparkpay.orders.collect()`.
 
-### Timeouts
+Resource responses from SparkPay are limited to 100 per request. So if your store has 450 orders, it will take five separate HTTP requests to collect them all. **Be careful with the `collect` method; if your store has a lot of data, it could take quite some time to collect all of the responses.**
+
+## Timeouts
 
 SparkPay stores are restricted to 50 requests per 10 seconds. If your request is rate limited, it will automatically be queued and retried after the time specified in the `Retry-After` header included in the response.
