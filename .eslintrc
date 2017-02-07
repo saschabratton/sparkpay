@@ -3,5 +3,5 @@
         "jest": true,
         "node": true
     },
-    "extends": "strict-standard"
+    "extends": "standard"
 }

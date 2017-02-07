@@ -8,8 +8,8 @@ const sparkpay = require('../lib/sparkpay').init(testConfig)
 const resources = require('../lib/resources')
 
 describe('instance of sparkpay module', () => {
-  it('has dispatch object', () => {
-    expect(typeof sparkpay.dispatch).toBe('object')
+  it('has dispatch method', () => {
+    expect(typeof sparkpay.dispatch).toBe('function')
   })
 
   it('has an object for each resource', () => {
@@ -22,10 +22,6 @@ describe('instance of sparkpay module', () => {
 const pkg = require('../package.json')
 
 describe('sparkpay module dispatch', () => {
-  it('is an instance of Axios', () => {
-    expect(sparkpay.dispatch.constructor.name).toBe('Axios')
-  })
-
   it('has configured base url', () => {
     expect(sparkpay.dispatch.defaults.baseURL)
       .toBe('https://' + testConfig.domain + '/api/v1')
